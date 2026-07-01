@@ -1,0 +1,27 @@
+/* Global CSS variabels + overwrite Bootstrap variabels comes here */
+
+:root {
+    /* Typography */
+    --font-family: 'Quicksand', 'Poppins', Arial, sans-serif;
+    --base-font-size: 18px;
+    --small-font-size: 14px;
+
+
+    --color-background: #f5efe6; /* paper */
+    --base-color: #f5f2ea;
+    --surface-color: #ffffff;
+    --clr-primary: #6b3e26;
+    --clr-secondary: #a47551;
+    --accent-color: #2f5d50;
+    --accen-color-hover: #149772;
+    --clr-text: #1f2a26;
+    --clr-muted: #5f6b66;
+
+    /* Effects */
+    --radius: 12px;
+    --shadow-soft: 0 4px 12px rgba(0,0,0,0.08);
+
+    /* Spacing */
+    --space-section: 6rem;
+    --space-container: 2rem;
+}
