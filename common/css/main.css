@@ -217,3 +217,81 @@ body {
     }
 
 }
+.book-card-horizontal {
+    display: flex;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    height: 220px; /* Tinggi tetap agar rapi */
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-soft);
+    }
+
+    .card-info {
+        padding: 1.5rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        .genre-badge {
+            font-size: 0.7rem;
+            color: var(--accent-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .description-short {
+            font-size: 0.85rem;
+            color: var(--muted-color);
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* Membatasi hanya 2 baris teks */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    }
+
+    .card-img-container {
+        background-color: #eee; /* Beri warna abu-abu saat gambar loading */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Gunakan contain agar cover buku tidak terpotong */
+            padding: 5px;
+        }
+    }
+    & .btn-accent {
+        /* 1. Hilangkan background default atau beri warna transparan */
+        background-color: transparent;
+
+        /* 2. Tambahkan Border */
+        border: 2px solid var(--accent-color);
+
+        /* 3. Atur warna teks agar sama dengan border */
+        color: var(--accent-color);
+
+        font-weight: 600;
+        padding: 5px 15px;
+        transition: all 0.3s ease;
+
+        /* 4. Efek Hover agar lebih interaktif */
+        &:hover {
+            background-color: var(--accent-color); /* Berubah penuh saat hover */
+            color: white; /* Teks jadi putih agar terbaca */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(47, 93, 80, 0.2);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+}
