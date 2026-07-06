@@ -1,0 +1,219 @@
+:root {
+    --base-color: #f5F2ea;
+    --surface-color: #ffffff;
+    --accent-color: #2f5d50;
+    --font-color: #1f2a26;
+    --muted-color: #5f6b66;
+    --border-color: #d9e0dc;
+}
+
+body {
+    background-color: var(--base-color);
+    color: var(--font-color);
+    font-size: var(--base-font-size);
+    line-height: 1.6;
+
+    nav {
+        background-color: var(--surface-color) !important;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+
+        .navbar-brand {
+            & img {
+                height: 45px;
+                transition: transform 0.3s ease;
+            }
+
+            &:hover img {
+                transform: scale(1.05);
+            }
+
+        }
+
+        & .nav-link {
+            color: var(--muted-color);
+            font-weight: 500;
+            position: relative;
+            display: inline-block;
+            padding: 0.5rem 0;
+            margin-left: 1.5rem;
+
+            /* Membuat garis bawah tersembunyi */
+
+            &::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: 0;
+                left: 0;
+                background-color: var(--accent-color);
+                transition: width 0.3s ease;
+            }
+
+            &:hover {
+                color: var(--accent-color);
+
+                &::after {
+                    width: 100%; /* Garis memanjang saat hover */
+                }
+            }
+
+            &.active::after {
+                width: 100%; /* Garis tetap ada jika menu aktif */
+            }
+        }
+        .navbar-toggler {
+            z-index: 9999;
+            border-color: var(--accent-color)!important;
+        }
+
+    }
+    header {
+
+        background-color: var(--surface-color);
+        border-bottom: 1px solid var(--border-color);
+        text-align: center;
+        margin-bottom: 0 !important;
+        padding-bottom: 80px;
+
+
+        & .top-logo img {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(var(--shadow-soft));
+            transition: transform 0.5s ease;
+
+            &:hover {
+                transform: rotate(-5deg) scale(1.1);
+            }
+        }
+
+        & h6 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--muted-color);
+            margin-bottom: 0.5rem;
+        }
+
+        & h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--clr-primary);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        & .cover-img {
+            max-width: 1000px;
+            width: 90%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+            transition: filter 0.3s ease;
+
+            &:hover {
+                filter: brightness(1.05);
+            }
+        }
+
+        /* Button styling with Hover Effect */
+        & .btn-accent {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 40px;
+            border-radius: 50px; /* Bentuk Pill/Kapsul */
+            font-weight: 600;
+            border: 2px solid var(--accent-color);
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: transparent;
+                color: var(--accent-color);
+                transform: translateY(-3px);
+                box-shadow: 0 10px 20px rgba(47, 93, 80, 0.2);
+            }
+
+            &:active {
+                transform: translateY(-1px);
+            }
+        }
+    }
+    footer {
+        background-color: var(--accent-color); /* Hijau botol yang elegan */
+        color: var(--surface-color); /* Teks putih bersih agar kontras */
+        padding: 4rem 0 2rem;
+        margin-top: 0 !important;
+        border-top: 5px solid var(--accent-color-hover); /* Garis aksen tipis di atas */
+
+        & h5 {
+            color: var(--base-color); /* Warna krem lembut untuk judul kolom */
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1rem;
+        }
+
+        & p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        /* Link Footer */
+        & a {
+            color: var(--surface-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+
+            &:hover {
+                color: var(--base-color);
+                padding-left: 5px; /* Efek bergeser sedikit saat hover */
+            }
+        }
+
+        /* Social Media */
+        & .social {
+            & a {
+                display: inline-block;
+                font-size: 1.5rem;
+                margin-right: 15px;
+                opacity: 0.8;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+
+                &:hover {
+                    opacity: 1;
+                    transform: translateY(-5px) scale(1.2);
+                    color: var(--base-color);
+                }
+            }
+        }
+
+        & hr {
+            border-color: rgba(255, 255, 255, 0.1);
+            margin: 2rem 0;
+        }
+
+        /* Copyright & Disclaimer */
+        & .copyright-section {
+            font-size: 0.85rem;
+            opacity: 0.7;
+
+            & a {
+                font-weight: 600;
+                text-decoration: underline;
+
+                &:hover {
+                    padding-left: 0; /* Menetralkan efek geser untuk link copyright */
+                }
+            }
+
+            & p {
+                margin-top: 0.5rem;
+                font-style: italic;
+            }
+        }
+    }
+
+}
