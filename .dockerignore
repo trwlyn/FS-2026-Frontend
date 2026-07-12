@@ -1,0 +1,19 @@
+# JetBrains / PhpStorm specific
+.idea/
+.phpstorm.meta.php
+_ide_helper.php
+.DS_Store
+
+# Git
+.git
+.gitignore
+
+# Documentation
+*.md
+LICENSE
+
+# Docker specific
+Dockerfile
+docker-compose.yml
+
+.vscode
