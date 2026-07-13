@@ -1,6 +1,6 @@
 // common/js/main.js
 
-const API_URL = "http://127.0.0.1:8000/api/books";
+const API_URL = "https://herkansing-backend.onrender.com/api/books";
 
 /**
  * 1. FUNGSI LOAD SEMUA BUKU (DENGAN SPINNER)
