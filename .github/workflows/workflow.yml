@@ -1,0 +1,57 @@
+name: Frontend CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: HTML Validation
+        # Menjalankan validasi pada folder Frontend
+        run: npx htmlhint "FS-2026-Frontend/**/*.html"
+
+  delivery:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 1. Login ke Docker Hub
+      - name: Login Dockerhub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      # 2. Build & Push Image
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./FS-2026-Frontend
+          file: ./FS-2026-Frontend/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/the-reading-nook-frontend:latest
+
+      # 3. Deploy ke Netlify (Menggunakan file statis)
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v2.0
+        with:
+          # Arahkan ke folder tempat file index.html berada
+          publish-dir: './FS-2026-Frontend'
+          production-deploy: true
+          enable-commit-comment: false
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
