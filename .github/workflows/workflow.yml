@@ -18,8 +18,7 @@ jobs:
           node-version: "18"
 
       - name: HTML Validation
-        # Menjalankan validasi pada folder Frontend
-        run: npx htmlhint "FS-2026-Frontend/**/*.html"
+        run: npx htmlhint "**/*.html"
 
   delivery:
     runs-on: ubuntu-latest
@@ -28,28 +27,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 1. Login ke Docker Hub
       - name: Login Dockerhub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      # 2. Build & Push Image
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./FS-2026-Frontend
-          file: ./FS-2026-Frontend/Dockerfile
+          # Gunakan titik (.) karena Dockerfile ada di root
+          context: .
+          file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/the-reading-nook-frontend:latest
 
-      # 3. Deploy ke Netlify (Menggunakan file statis)
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0
         with:
-          # Arahkan ke folder tempat file index.html berada
-          publish-dir: './FS-2026-Frontend'
+          # Gunakan titik (.) karena index.html ada di root
+          publish-dir: '.'
           production-deploy: true
           enable-commit-comment: false
         env:
